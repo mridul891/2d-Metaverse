@@ -1,6 +1,9 @@
 import { io } from "socket.io-client";
 import "./App.css";
 import { useEffect, useMemo, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Landing from "./Component/Landing";
+import Room from "./Component/Room";
 
 function App() {
   const socket = useMemo(() => io("http://localhost:3000"), []);
@@ -25,11 +28,10 @@ function App() {
     });
   }, [socket]);
   return (
-    <div>
-      <input type="text" onChange={handleChange} value={data} />
-      <button onClick={handleSubmit}>submit</button>
-      {data}
-    </div>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/room" element={<Room />} />
+    </Routes>
   );
 }
 
