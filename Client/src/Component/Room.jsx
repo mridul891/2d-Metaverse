@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import Phaser from "phaser";
-
 import Game from "../Scenes/Game";
 
 const Room = () => {
@@ -8,7 +7,8 @@ const Room = () => {
     width: 1000,
     height: 500,
     type: Phaser.AUTO,
-    scene: [Game],
+    parent: "game-video",
+    
   };
   useEffect(() => {
     async function initGame() {
@@ -21,7 +21,11 @@ const Room = () => {
 
     initGame();
   }, []);
-  return;
+  return (
+    <div id="game-video" className="flex justify-center items-center ">
+      {" "}
+    </div>
+  );
 };
 
 export default Room;
