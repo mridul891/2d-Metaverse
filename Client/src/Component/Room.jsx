@@ -1,22 +1,25 @@
 import { useEffect } from "react";
 import Phaser from "phaser";
 import Game from "../Scenes/Game";
+import Preloader from "../Scenes/Preloader";
 
 const Room = () => {
   const config = {
     width: 1000,
     height: 500,
     type: Phaser.AUTO,
-    parent: "game-video",
-    
+    // parent: "game-video",
+    physics: {
+      default: "arcade",
+      arcade: {
+        gravity: { y: 0 },
+      },
+    },
+    scene: [Preloader, Game],
   };
   useEffect(() => {
     async function initGame() {
-      const game = new Phaser.Game(config);
-      // game.scene.add("titleScreen", TitleScreen);
-      game.scene.add("game", Game);
-      // game.scene.start("titleScreen")
-      game.scene.start("game");
+      new Phaser.Game(config);
     }
 
     initGame();
