@@ -38,9 +38,6 @@ io.on('connection', (socket) => {
         usersocketMap[socket.id] = username;
         socket.join(roomId);
 
-        const clients = getAllClients(roomId);
-
-        console.log(clients)
     })
 
 

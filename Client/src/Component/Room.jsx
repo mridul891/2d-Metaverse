@@ -10,7 +10,7 @@ const Room = () => {
       console.log("connected", socket.id);
     });
 
-    socket.on("join", (roomId = 1, username = "mridul") => {
+    socket.on("join", () => {
       
     });
   }, [socket]);
