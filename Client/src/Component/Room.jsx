@@ -1,32 +1,25 @@
-import { useEffect } from "react";
-import Phaser from "phaser";
-import Game from "../Scenes/Game";
-import Preloader from "../Scenes/Preloader";
+import { useEffect, useMemo, useState } from "react";
+import { io } from "socket.io-client";
 
 const Room = () => {
-  const config = {
-    width: 1000,
-    height: 500,
-    type: Phaser.AUTO,
-    // parent: "game-video",
-    physics: {
-      default: "arcade",
-      arcade: {
-        gravity: { y: 0 },
-      },
-    },
-    scene: [Preloader, Game],
-  };
-  useEffect(() => {
-    async function initGame() {
-      new Phaser.Game(config);
-    }
+  const socket = useMemo(() => io("http://localhost:3000"), []);
+  const [data, setData] = useState("");
 
-    initGame();
-  }, []);
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("connected", socket.id);
+    });
+
+    socket.on("join", (roomId = 1, username = "mridul") => {
+      
+    });
+  }, [socket]);
   return (
-    <div id="game-video" className="flex justify-center items-center ">
-      {" "}
+    <div id="game-video" className="flex flex-col justify-center items-center ">
+      UserList
+      {/* {data.map((data) => (
+        <div key={data.id}>{data.id}</div>
+      ))} */}
     </div>
   );
 };
