@@ -19,7 +19,7 @@ const io = new Server(server, {
     }
 });
 
-const usersocketMap = {}
+
 
 const getAllClients = (roomId) => {
     return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map((socketId) => {
@@ -29,16 +29,18 @@ const getAllClients = (roomId) => {
         }
     })
 }
-
+const usersocketMap = {}
 io.on('connection', (socket) => {
 
     console.log('User Connected With id', socket.id)
 
-    socket.on("join", ({ roomId, username }) => {
+    socket.on("join", (roomId, username) => {
+        console.log("reached")
         usersocketMap[socket.id] = username;
+        console.log(`userjoined ${username}`)
         socket.join(roomId);
-
     })
+    console.log(usersocketMap)
 
 
     socket.on("disconnect", () => {

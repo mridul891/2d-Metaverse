@@ -14,7 +14,7 @@ const Landing = () => {
       toast.error("Room ID & username is required");
       return;
     }
-    navigate(`/room/${roomId}`);
+    navigate(`/room/${roomId}`, { state: { username } });
   };
   return (
     <div className="h-screen flex  justify-center items-center bg-[#1C1E29] text-white">

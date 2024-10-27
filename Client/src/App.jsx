@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Landing from "./Component/Landing";
 import Room from "./Component/Room";
 import { Toaster } from "react-hot-toast";
+import Game from "./Component/Game";
 function App() {
   return (
     <>
@@ -20,7 +21,8 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/room/:id" element={<Room />} />
+        <Route path="/room/:roomId" element={<Room />} />
+        <Route path="/game" element={<Game />} />
       </Routes>
     </>
   );

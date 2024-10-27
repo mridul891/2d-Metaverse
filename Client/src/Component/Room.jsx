@@ -1,25 +1,22 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { initSocket } from "../../socket";
 import { io } from "socket.io-client";
 
 const Room = () => {
-  const socket = useMemo(() => io("http://localhost:3000"), []);
-  const [data, setData] = useState("");
-
+  const location = useLocation();
+  const { roomId } = useParams();
+  const username = location.state?.username;
+  const socket = io();
   useEffect(() => {
-    socket.on("connect", () => {
-      console.log("connected", socket.id);
+    initSocket();
+    socket.on("join", (roomId, username) => {
+      console.log("Done");
     });
-
-    socket.on("join", () => {
-      
-    });
-  }, [socket]);
+  }, []);
   return (
     <div id="game-video" className="flex flex-col justify-center items-center ">
       UserList
-      {/* {data.map((data) => (
-        <div key={data.id}>{data.id}</div>
-      ))} */}
     </div>
   );
 };
