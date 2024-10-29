@@ -35,12 +35,11 @@ io.on('connection', (socket) => {
     console.log('User Connected With id', socket.id)
 
     socket.on("join", (roomId, username) => {
-        console.log("reached")
-        usersocketMap[socket.id] = username;
-        console.log(`userjoined ${username}`)
+        usersocketMap[socket.id] = roomId.username;
         socket.join(roomId);
+        console.log(`userjoined ${roomId.username}`)
     })
-    console.log(usersocketMap)
+    console.log(usersocketMap);
 
 
     socket.on("disconnect", () => {

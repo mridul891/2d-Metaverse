@@ -8,11 +8,11 @@ export default class GameScene extends Phaser.Scene {
 
     preload() {
         this.load.image('grid', '/assets/grid.png');
-        this.load.image('sky', 'assets/sky.png');
-        this.load.image('ground', 'assets/platform.png');
-        this.load.image('star', 'assets/star.png');
-        this.load.image('bomb', 'assets/bomb.png');
-        this.load.spritesheet('dude', 'assets/dude.png', {
+        this.load.image('sky', '/assets/sky.png');
+        this.load.image('ground', '/assets/platform.png');
+        this.load.image('star', '/assets/star.png');
+        this.load.image('bomb', '/assets/bomb.png');
+        this.load.spritesheet('dude', '/assets/dude.png', {
             frameWidth: 32,
             frameHeight: 48
         });
@@ -62,6 +62,7 @@ export default class GameScene extends Phaser.Scene {
     update() {
         // Horizontal movement
         if (cursors.left.isDown) {
+            console.log(player.x)
             player.setVelocityX(-160);
             player.anims.play('left', true);
         } else if (cursors.right.isDown) {

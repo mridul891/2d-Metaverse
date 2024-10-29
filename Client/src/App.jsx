@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/room/:roomId" element={<Room />} />
-        <Route path="/game" element={<Game />} />
+        {/* <Route path="/game" element={<Game />} /> */}
       </Routes>
     </>
   );

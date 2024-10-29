@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import Phaser from "phaser";
 import GameScene from "@/Scene/GameScene";
 
@@ -16,7 +16,7 @@ const Game = () => {
     scene: [GameScene],
   };
 
-  useEffect(() => {
+  useMemo(() => {
     new Phaser.Game(config);
   }, []);
   return <div></div>;
