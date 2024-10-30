@@ -29,17 +29,20 @@ const getAllClients = (roomId) => {
         }
     })
 }
-const usersocketMap = {}
+let players = {}
 io.on('connection', (socket) => {
 
     console.log('User Connected With id', socket.id)
 
-    socket.on("join", (roomId, username) => {
-        usersocketMap[socket.id] = roomId.username;
+    socket.on("join", (roomId) => {
+        players[socket.id] = {
+            username: roomId.username,
+            X: 100,
+            y: 100,
+        };
         socket.join(roomId);
-        console.log(`userjoined ${roomId.username}`)
+        console.log(players);
     })
-    console.log(usersocketMap);
 
 
     socket.on("disconnect", () => {

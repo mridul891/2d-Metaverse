@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 var player, platforms, cursors;
-
+let x = 100, y = 450;
 export default class GameScene extends Phaser.Scene {
     constructor() {
         super('Game');
@@ -23,7 +23,7 @@ export default class GameScene extends Phaser.Scene {
         platforms = this.physics.add.staticGroup();
         platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
-        player = this.physics.add.sprite(100, 450, 'dude');
+        player = this.physics.add.sprite(x, y, 'dude');
 
         player.setBounce(0.2);
         player.setCollideWorldBounds(true);
@@ -62,11 +62,11 @@ export default class GameScene extends Phaser.Scene {
     update() {
         // Horizontal movement
         if (cursors.left.isDown) {
-            console.log(player.x)
-            player.setVelocityX(-160);
+            x += player.setVelocityX(-160)
+            console.log(Math.floor(x))
             player.anims.play('left', true);
         } else if (cursors.right.isDown) {
-            player.setVelocityX(160);
+            x += player.setVelocityX(160);
             player.anims.play('right', true);
         } else {
             player.setVelocityX(0);

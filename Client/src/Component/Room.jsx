@@ -10,24 +10,10 @@ const Room = () => {
   const username = location.state?.username;
   const socketRef = useRef(null);
   // const socket = io();
-  useEffect(() => {
-    async function init() {
-      socketRef.current = initSocket();
 
-      socketRef.current.emit("join", {
-        roomId,
-        username,
-      });
-    }
-    init();
-    return () => {
-      socketRef.current.off("join");
-      socketRef.current.disconnect();
-    };
-  }, []);
   return (
     <div id="game-video" className="flex flex-col justify-center items-center ">
-      <Game socketRef={socketRef} roomId={roomId} />
+      <Game roomId={roomId} />
     </div>
   );
 };
